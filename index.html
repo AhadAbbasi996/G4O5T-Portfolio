@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Abdul Ahad | Cybersecurity Portfolio — Software Engineering Undergraduate focused on Penetration Testing, Red Teaming, and Digital Security Operations.">
+  <meta name="keywords" content="Abdul Ahad, Cybersecurity, Penetration Testing, Red Team, Software Engineering, Air University Islamabad, Cyber Range, CTF, Web Security, Forensics">
+  <meta name="author" content="Abdul Ahad">
+  <title>Abdul Ahad | Red Team Portfolio — Penetration Testing & Cybersecurity</title>
+
+  <!-- Typography: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & VARIABLES — RED TEAM TACTICAL OPERATIONAL THEME
+       ========================================================================== */
+    :root {
+      --bg-main: #070507;
+      --bg-surface: #100b12;
+      --bg-card: #18101a;
+      --bg-card-hover: #221425;
+      --bg-glass: rgba(16, 11, 18, 0.85);
+      
+      --border-color: #331a2a;
+      --border-accent: rgba(255, 0, 60, 0.4);
+      --border-red: rgba(255, 0, 60, 0.6);
+      
+      --accent-red: #ff003c;
+      --accent-crimson: #e11d48;
+      --accent-rose: #f43f5e;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      
+      --text-bright: #ffffff;
+      --text-main: #e2d8e5;
+      --text-muted: #8c7891;
+      --text-dark: #57425b;
+
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.3s ease;
+      --radius-sm: 3px;
+      --radius-md: 6px;
+      --radius-lg: 10px;
+      
+      --glow-red: 0 0 18px rgba(255, 0, 60, 0.35);
+      --glow-red-heavy: 0 0 30px rgba(255, 0, 60, 0.6);
+    }
+
+    /* Reset & Core */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 0, 60, 0.08) 0%, transparent 60%),
+        linear-gradient(to right, rgba(255, 0, 60, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 0, 60, 0.05) 1px, transparent 1px);
+      background-size: 100% 100%, 35px 35px, 35px 35px;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       HACKER EFFECT 1: CRT SCANLINE OVERLAY
+       ========================================================================== */
+    body::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+      background-size: 100% 4px;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    a {
+      color: var(--accent-red);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--accent-rose);
+    }
+
+    ul { list-style: none; }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Typography & Utilities */
+    .font-mono { font-family: var(--font-mono); }
+    .text-bright { color: var(--text-bright); }
+    .text-muted { color: var(--text-muted); }
+    .text-red { color: var(--accent-red); }
+
+    /* Badges & Micro Labels */
+    .tech-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      background: rgba(255, 0, 60, 0.08);
+      border: 1px solid var(--border-accent);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: var(--glow-red);
+    }
+
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .badge-hands-on, .badge-offensive {
+      background: rgba(255, 0, 60, 0.15);
+      color: var(--accent-red);
+      border: 1px solid var(--accent-red);
+    }
+
+    .badge-foundational {
+      background: rgba(140, 120, 145, 0.15);
+      color: var(--text-main);
+      border: 1px solid var(--text-dark);
+    }
+
+    .badge-status {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-green);
+      border: 1px solid var(--accent-green);
+    }
+
+    /* Section Component Layout */
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid rgba(51, 26, 42, 0.6);
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .section-title::before {
+      content: '//';
+      color: var(--accent-red);
+      font-family: var(--font-mono);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 1px solid transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-primary {
+      background: var(--accent-red);
+      color: #000;
+      box-shadow: var(--glow-red);
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-rose);
+      color: #000;
+      box-shadow: var(--glow-red-heavy);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(24, 16, 26, 0.8);
+      color: var(--text-bright);
+      border-color: var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+      box-shadow: var(--glow-red);
+      transform: translateY(-2px);
+    }
+
+    /* HACKER EFFECT 2: TERMINAL BLINKING CURSOR */
+    .typing-cursor::after {
+      content: '█';
+      color: var(--accent-red);
+      animation: blink 0.8s infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ==========================================================================
+       1. NAVIGATION BAR
+       ========================================================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      height: 70px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .logo {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-bright);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-badge {
+      color: var(--accent-red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-main);
+      letter-spacing: 0.05em;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--accent-red);
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-red);
+      background: rgba(255, 0, 60, 0.08);
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      border: 1px solid var(--border-accent);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-red);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-red);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(1.3); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-bright);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       2. HERO SECTION & SCAN BEAM EFFECT
+       ========================================================================== */
+    .hero {
+      min-height: 100vh;
+      padding-top: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .hero-name {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--text-bright);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--accent-red);
+      font-family: var(--font-mono);
+    }
+
+    .hero-description {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      max-width: 600px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* HACKER EFFECT 3: RADAR SCANNING GRID MAP */
+    .recon-map-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: inset 0 0 25px rgba(0,0,0,0.8), var(--glow-red);
+      overflow: hidden;
+    }
+
+    /* Animated Scanning Line Sweep */
+    .scan-beam {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+      box-shadow: 0 0 12px var(--accent-red);
+      animation: scanbeam 4s linear infinite;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    @keyframes scanbeam {
+      0% { top: -5%; }
+      100% { top: 105%; }
+    }
+
+    .recon-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .recon-nodes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      position: relative;
+    }
+
+    .node-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-family: var(--font-mono);
+      position: relative;
+      transition: all var(--transition-fast);
+    }
+
+    .node-card:hover {
+      border-color: var(--accent-red);
+      box-shadow: var(--glow-red);
+      transform: translateY(-2px);
+    }
+
+    .node-id {
+      font-size: 0.65rem;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .node-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+
+    .node-status {
+      font-size: 0.65rem;
+      margin-top: 0.4rem;
+      display: inline-block;
+      color: var(--accent-red);
+    }
+
+    /* Compact Status Strip */
+    .status-strip {
+      margin-top: 3rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .status-label { color: var(--text-muted); }
+    .status-val { color: var(--text-bright); font-weight: 600; }
+
+    /* ==========================================================================
+       3. ABOUT / OPERATOR PROFILE
+       ========================================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+    }
+
+    .operator-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+
+    .operator-quote {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text-bright);
+      border-left: 3px solid var(--accent-red);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .operator-text {
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+      font-size: 0.98rem;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--border-color);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: calc(-1.5rem - 5px);
+      top: 0.25rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-red);
+      box-shadow: 0 0 10px var(--accent-red);
+    }
+
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-red);
+      font-weight: 700;
+    }
+
+    .timeline-desc {
+      color: var(--text-main);
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+
+    /* ==========================================================================
+       4. EDUCATION
+       ========================================================================== */
+    .edu-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .edu-main {
+      border-right: 1px solid var(--border-color);
+      padding-right: 2rem;
+    }
+
+    .institution {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+
+    .degree {
+      font-family: var(--font-mono);
+      color: var(--accent-red);
+      font-size: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    .edu-date {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .courses-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .course-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       5. EXPERIENCE (FIELD EXPERIENCE)
+       ========================================================================== */
+    .exp-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .exp-company {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+
+    .exp-role {
+      font-family: var(--font-mono);
+      color: var(--accent-red);
+      font-size: 0.95rem;
+    }
+
+    .sec-flow {
+      margin-top: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+    }
+
+    .sec-flow-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .flow-steps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-bright);
+      text-align: center;
+      flex: 1;
+      min-width: 130px;
+    }
+
+    .flow-arrow {
+      color: var(--accent-red);
+      font-family: var(--font-mono);
+      font-weight: bold;
+    }
+
+    /* ==========================================================================
+       6. CYBERSECURITY SKILLS (ATTACK SURFACE)
+       ========================================================================== */
+    .skills-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-cat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      transition: border-color var(--transition-fast);
+    }
+
+    .skill-cat-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    .skill-cat-title {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent-red);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px dashed rgba(51, 26, 42, 0.5);
+    }
+
+    .skill-name { color: var(--text-bright); }
+
+    /* ==========================================================================
+       7. MISSION LOGS (PROJECTS)
+       ========================================================================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .case-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: all var(--transition-fast);
+    }
+
+    .case-card:hover {
+      border-color: var(--accent-red);
+      transform: translateY(-4px);
+      box-shadow: var(--glow-red);
+    }
+
+    .case-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .case-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .case-category {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent-red);
+      margin-bottom: 1rem;
+    }
+
+    .case-techniques {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .case-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* ==========================================================================
+       8. CYBER RANGE
+       ========================================================================== */
+    .cyber-range-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .ctf-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .ctf-card.featured {
+      border-color: var(--accent-red);
+      background: linear-gradient(135deg, var(--bg-surface) 0%, rgba(255, 0, 60, 0.05) 100%);
+      box-shadow: var(--glow-red);
+    }
+
+    .ctf-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .ctf-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+
+    .ctf-desc {
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       9. EVIDENCE LOCKER & BEYOND TERMINAL
+       ========================================================================== */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .cert-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    /* ==========================================================================
+       10. LEARNING ROADMAP
+       ========================================================================== */
+    .roadmap-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      position: relative;
+    }
+
+    .roadmap-step {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      position: relative;
+    }
+
+    .roadmap-step.active {
+      border-color: var(--accent-red);
+      background: rgba(255, 0, 60, 0.03);
+      box-shadow: var(--glow-red);
+    }
+
+    .step-number {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-red);
+      font-weight: 700;
+    }
+
+    .step-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin: 0.25rem 0 0.75rem 0;
+    }
+
+    .step-items {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    /* ==========================================================================
+       11. HOW I THINK (ATTACKER'S MINDSET)
+       ========================================================================== */
+    .mindset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .mindset-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      text-align: center;
+      transition: border-color var(--transition-fast);
+    }
+
+    .mindset-card:hover {
+      border-color: var(--accent-red);
+      box-shadow: var(--glow-red);
+    }
+
+    .mindset-num {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--accent-red);
+      margin-bottom: 0.5rem;
+    }
+
+    .mindset-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 0.4rem;
+    }
+
+    .mindset-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       12. CONTACT & FOOTER
+       ========================================================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-main);
+    }
+
+    .form-input, .form-textarea {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      color: var(--text-bright);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      transition: border-color var(--transition-fast);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--accent-red);
+      box-shadow: var(--glow-red);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .footer {
+      padding: 3rem 0;
+      background: #040205;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .brand-statement {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-bright);
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+    }
+
+    /* ==========================================================================
+       13. MODALS (CASE STUDY DETAILS)
+       ========================================================================== */
+    dialog {
+      margin: auto;
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--accent-red);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      max-width: 800px;
+      width: 90%;
+      box-shadow: 0 0 50px rgba(0,0,0,0.9), var(--glow-red-heavy);
+    }
+
+    dialog::backdrop {
+      background: rgba(4, 2, 5, 0.88);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .btn-close:hover { color: var(--accent-red); }
+
+    .modal-section { margin-bottom: 1.25rem; }
+
+    .modal-section-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-red);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+    }
+
+    .code-block {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-bright);
+      overflow-x: auto;
+      margin-top: 0.4rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-grid, .about-grid, .edu-card, .two-col-grid, .contact-grid, .cyber-range-grid {
+        grid-template-columns: 1fr;
+      }
+      .edu-main {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-right: 0;
+        padding-bottom: 1.5rem;
+      }
+      .hero-name { font-size: 2.75rem; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-surface);
+        flex-direction: column;
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-links.active { display: flex; }
+      .nav-toggle { display: block; }
+      .hero-name { font-size: 2.2rem; }
+      .recon-nodes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+     1. NAVIGATION BAR
+     ========================================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="logo">
+        <span class="logo-badge">AHAD-01</span> // RED_OPS
+      </a>
+      
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">ABOUT</a>
+        <a href="#education" class="nav-link">EDUCATION</a>
+        <a href="#experience" class="nav-link">EXPERIENCE</a>
+        <a href="#skills" class="nav-link">SKILLS</a>
+        <a href="#projects" class="nav-link">MISSION LOGS</a>
+        <a href="#cyber-range" class="nav-link">CYBER RANGE</a>
+        <a href="#roadmap" class="nav-link">ROADMAP</a>
+        <a href="#contact" class="nav-link">CONTACT</a>
+      </nav>
+
+      <div class="status-indicator">
+        <span class="pulse-dot"></span>
+        <span>RED_TEAM_ACTIVE</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+       2. HERO SECTION
+       ========================================================================== -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="tech-label">SECURITY PROFILE // AHAD-01</span>
+            <h1 class="hero-name">Abdul Ahad</h1>
+            <h2 class="hero-title typing-cursor">Penetration Tester / Red Team Enthusiast</h2>
+            <p class="hero-description">
+              Software Engineering undergraduate exploring offensive security through hands-on labs, cyber ranges, CTFs, security projects, and continuous experimentation.
+            </p>
+            <div class="hero-ctas">
+              <a href="#projects" class="btn btn-primary">Explore My Work</a>
+              <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-secondary">View GitHub</a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener" class="btn btn-secondary">Connect on LinkedIn</a>
+            </div>
+          </div>
+
+          <!-- Recon Surface Diagram with Animated Scanning Beam -->
+          <div class="recon-map-container">
+            <div class="scan-beam"></div>
+            <div class="recon-header">
+              <span>DIGITAL ATTACK SURFACE MAP</span>
+              <span class="text-red">RECON_MODE: ACTIVE</span>
+            </div>
+            <div class="recon-nodes-grid">
+              <div class="node-card">
+                <span class="node-id">NODE_01</span>
+                <span class="node-title">RECON</span>
+                <span class="node-status">ENUMERATING</span>
+              </div>
+              <div class="node-card">
+                <span class="node-id">NODE_02</span>
+                <span class="node-title">WEB</span>
+                <span class="node-status">ANALYZING</span>
+              </div>
+              <div class="node-card">
+                <span class="node-id">NODE_03</span>
+                <span class="node-title">LINUX</span>
+                <span class="node-status">PRIV_CHECK</span>
+              </div>
+              <div class="node-card">
+                <span class="node-id">NODE_04</span>
+                <span class="node-title">NETWORK</span>
+                <span class="node-status">PORT_SCAN</span>
+              </div>
+              <div class="node-card">
+                <span class="node-id">NODE_05</span>
+                <span class="node-title">AD LAB</span>
+                <span class="node-status">DOMAIN_ENUM</span>
+              </div>
+              <div class="node-card">
+                <span class="node-id">NODE_06</span>
+                <span class="node-title">EXPLOIT</span>
+                <span class="node-status text-red">CONTROLLED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compact Status Strip -->
+        <div class="status-strip">
+          <div class="status-item">
+            <span class="status-label">STATUS:</span>
+            <span class="status-val text-red">LEARNING</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">FOCUS:</span>
+            <span class="status-val">OFFENSIVE SECURITY</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">MODE:</span>
+            <span class="status-val">RESEARCH + PRACTICE</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">LOCATION:</span>
+            <span class="status-val">PAKISTAN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       3. ABOUT / OPERATOR PROFILE
+       ========================================================================== -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="tech-label">PROFILE VERIFICATION</span>
+          <h2 class="section-title">Operator Profile</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="operator-card">
+            <blockquote class="operator-quote">
+              “I investigate systems, understand how they break, and learn how to secure them.”
+            </blockquote>
+            <p class="operator-text">
+              I'm Abdul Ahad, a Software Engineering undergraduate building hands-on experience in cybersecurity, penetration testing, and red-team operations. I learn by breaking down systems, investigating vulnerabilities, participating in cyber ranges and CTFs, and documenting what I discover.
+            </p>
+            <p class="operator-text">
+              Currently pursuing my BS in Software Engineering at Air University Islamabad, I combine strong programmatic foundations with offensive security research. My objective is to understand systems deeply from an attacker's perspective so they can be effectively hardened and defended.
+            </p>
+          </div>
+
+          <!-- Progression Timeline -->
+          <div class="operator-card">
+            <h3 class="font-mono text-bright" style="margin-bottom: 1.5rem;">Progression Timeline</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="timeline-year">2024</span>
+                <p class="timeline-desc">Started BS Software Engineering at Air University Islamabad. Established core foundations in programming and computing.</p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-year">2025</span>
+                <p class="timeline-desc">Expanded cybersecurity learning, practical lab environments, web exploitation, and network enumeration.</p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-year">2026</span>
+                <p class="timeline-desc">Secured Cybersecurity Internship + Active CTF/Cyber-Range participation + Deeper penetration testing focus.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       4. EDUCATION
+       ========================================================================== -->
+    <section id="education">
+      <div class="container">
+        <div class="section-header">
+          <span class="tech-label">ACADEMIC FOUNDATION</span>
+          <h2 class="section-title">Education & Foundations</h2>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-main">
+            <h3 class="institution">Air University Islamabad</h3>
+            <div class="degree">BS Software Engineering</div>
+            <div class="edu-date">Started: September 2024</div>
+            <p class="operator-text">
+              Building a robust software engineering foundation while developing a parallel specialization in cybersecurity, network security, and offensive methodology.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-mono text-bright" style="margin-bottom: 0.75rem;">Connected SE Competencies</h4>
+            <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 1rem;">
+              Software engineering knowledge directly informs my approach to vulnerability identification and code-level flaw analysis.
+            </p>
+            <div class="courses-grid">
+              <span class="course-tag">Programming</span>
+              <span class="course-tag">Data Structures</span>
+              <span class="course-tag">Software Design</span>
+              <span class="course-tag">Computer Networks</span>
+              <span class="course-tag">Operating Systems</span>
+              <span class="course-tag">Human-Computer Interaction</span>
+              <span class="course-tag">Software Requirements</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       5. EXPERIENCE (FIELD EXPERIENCE)
+       ========================================================================== -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-header">
+          <span class="tech-label">PRACTICAL EXPOSURE</span>
+          <h2 class="section-title">Field Experience</h2>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <h3 class="exp-company">Abhi Microfinance Bank — Head Office</h3>
+              <div class="exp-role">Cybersecurity Intern</div>
+            </div>
+            <span class="badge badge-status">CURRENT</span>
+          </div>
+
+          <p class="operator-text">
+            Gaining practical exposure to cybersecurity within a financial-services environment and developing an understanding of security processes, controls, systems, and professional security operations.
+          </p>
+
+          <!-- Banking Security Flow Diagram -->
+          <div class="sec-flow">
+            <div class="sec-flow-title">Financial Sector Security Flow Context</div>
+            <div class="flow-steps">
+              <div class="flow-step">BANKING NETWORK</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step">USERS / ACCESS</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step">APPLICATIONS</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step text-red">SECURITY CONTROLS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       6. CYBERSECURITY SKILLS (ATTACK SURFACE)
+       ========================================================================== -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="tech-label">TECHNICAL CAPABILITIES</span>
+          <h2 class="section-title">Attack Surface & Skills Matrix</h2>
+        </div>
+
+        <div class="skills-categories">
+          <!-- Recon -->
+          <div class="skill-cat-card">
+            <div class="skill-cat-title">
+              <span>01. RECONNAISSANCE</span>
+            </div>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-name">Nmap</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Network Enumeration</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Service Enumeration</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Basic OSINT Concepts</span><span class="badge badge-foundational">Foundational</span></div>
+            </div>
+          </div>
+
+          <!-- Web Security -->
+          <div class="skill-cat-card">
+            <div class="skill-cat-title">
+              <span>02. WEB SECURITY</span>
+            </div>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-name">Burp Suite</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Web Enumeration</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">HTTP Fundamentals</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">IDOR & LFI Vulns</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Authentication Concepts</span><span class="badge badge-foundational">Foundational</span></div>
+            </div>
+          </div>
+
+          <!-- System / Linux -->
+          <div class="skill-cat-card">
+            <div class="skill-cat-title">
+              <span>03. SYSTEM / LINUX</span>
+            </div>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-name">Linux / Kali Linux</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Bash & WSL</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">File Permissions</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Basic Privilege Escalation</span><span class="badge badge-foundational">Foundational</span></div>
+            </div>
+          </div>
+
+          <!-- Networking -->
+          <div class="skill-cat-card">
+            <div class="skill-cat-title">
+              <span>04. NETWORKING</span>
+            </div>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-name">TCP/IP Protocol Stack</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Ports & Services</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Wireshark Fundamentals</span><span class="badge badge-foundational">Foundational</span></div>
+              <div class="skill-item"><span class="skill-name">VPN Concepts</span><span class="badge badge-foundational">Foundational</span></div>
+            </div>
+          </div>
+
+          <!-- Windows / Active Directory -->
+          <div class="skill-cat-card">
+            <div class="skill-cat-title">
+              <span>05. WINDOWS / AD</span>
+            </div>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-name">Windows Server</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Active Directory Basics</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">SMB / Windows Enum</span><span class="badge badge-hands-on">Hands-on</span></div>
+              <div class="skill-item"><span class="skill-name">Domain Concepts</span><span class="badge badge-foundational">Foundational</span></div>
+            </div>
+          </div>
+
+          <!-- Security / Governance -->
+          <div class="skill-cat-card">
+            <div class="skill-cat-title">
+              <span>06. GOVERNANCE & CONTROLS</span>
+            </div>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-name">CIA Triad Core</span><span class="badge badge-foundational">Foundational</span></div>
+              <div class="skill-item"><span class="skill-name">CIS Controls Awareness</span><span class="badge badge-foundational">Foundational</span></div>
+              <div class="skill-item"><span class="skill-name">PCI DSS & PAM Awareness</span><span class="badge badge-foundational">Foundational</span></div>
+              <div class="skill-item"><span class="skill-name">GRC Concepts</span><span class="badge badge-foundational">Foundational</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       7. MISSION LOGS (PROJECTS)
+       ========================================================================== -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="tech-label">INVESTIGATION DOSSIERS</span>
+          <h2 class="section-title">Mission Logs</h2>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: HTB CAP -->
+          <article class="case-card">
+            <div>
+              <div class="case-meta">
+                <span>CASE ID: HTB-01</span>
+                <span class="badge badge-status">COMPLETED</span>
+              </div>
+              <h3 class="case-title">HTB — CAP</h3>
+              <div class="case-category">Web / Linux / Enumeration</div>
+              <div class="case-techniques">
+                <span class="course-tag">IDOR</span>
+                <span class="course-tag">Wireshark</span>
+                <span class="course-tag">Capabilities</span>
+                <span class="course-tag">Linux Enum</span>
+              </div>
+            </div>
+            <div class="case-footer">
+              <span class="text-muted" style="font-size: 0.75rem;">Authorized Lab</span>
+              <button class="btn btn-secondary" onclick="document.getElementById('modal-cap').showModal()">Read Case Study</button>
+            </div>
+          </article>
+
+          <!-- Project 2: Sherlock Brutus -->
+          <article class="case-card">
+            <div>
+              <div class="case-meta">
+                <span>CASE ID: FRN-01</span>
+                <span class="badge badge-status">COMPLETED</span>
+              </div>
+              <h3 class="case-title">Sherlock — Brutus</h3>
+              <div class="case-category">Digital Forensics / Log Analysis</div>
+              <div class="case-techniques">
+                <span class="course-tag">auth.log</span>
+                <span class="course-tag">wtmp</span>
+                <span class="course-tag">Timeline Recon</span>
+                <span class="course-tag">Brute-Force Analysis</span>
+              </div>
+            </div>
+            <div class="case-footer">
+              <span class="text-muted" style="font-size: 0.75rem;">Forensic Analysis</span>
+              <button class="btn btn-secondary" onclick="document.getElementById('modal-brutus').showModal()">Read Case Study</button>
+            </div>
+          </article>
+
+          <!-- Project 3: Hwat'sHell -->
+          <article class="case-card">
+            <div>
+              <div class="case-meta">
+                <span>CASE ID: WEB-02</span>
+                <span class="badge badge-status">COMPLETED</span>
+              </div>
+              <h3 class="case-title">Hwat'sHell</h3>
+              <div class="case-category">Web Security / Shell / Post-Exploitation</div>
+              <div class="case-techniques">
+                <span class="course-tag">Web Shell</span>
+                <span class="course-tag">Reverse Shell</span>
+                <span class="course-tag">Linux Env</span>
+                <span class="course-tag">Command Exec</span>
+              </div>
+            </div>
+            <div class="case-footer">
+              <span class="text-muted" style="font-size: 0.75rem;">Authorized Lab</span>
+              <button class="btn btn-secondary" onclick="document.getElementById('modal-hwatshell').showModal()">Read Case Study</button>
+            </div>
+          </article>
+
+          <!-- Project 4: Logslinger -->
+          <article class="case-card">
+            <div>
+              <div class="case-meta">
+                <span>CASE ID: WEB-03</span>
+                <span class="badge badge-status">COMPLETED</span>
+              </div>
+              <h3 class="case-title">Logslinger</h3>
+              <div class="case-category">Web Security / LFI</div>
+              <div class="case-techniques">
+                <span class="course-tag">LFI</span>
+                <span class="course-tag">Docker Container</span>
+                <span class="course-tag">/etc/passwd</span>
+                <span class="course-tag">Param Manipulation</span>
+              </div>
+            </div>
+            <div class="case-footer">
+              <span class="text-muted" style="font-size: 0.75rem;">Container Lab</span>
+              <button class="btn btn-secondary" onclick="document.getElementById('modal-logslinger').showModal()">Read Case Study</button>
+            </div>
+          </article>
+
+          <!-- Project 5: ThreadWeaver -->
+          <article class="case-card">
+            <div>
+              <div class="case-meta">
+                <span>CASE ID: PWN-01</span>
+                <span class="badge badge-offensive">RESEARCH / PRACTICE</span>
+              </div>
+              <h3 class="case-title">ThreadWeaver</h3>
+              <div class="case-category">Binary Exploitation / Pwn</div>
+              <div class="case-techniques">
+                <span class="course-tag">Ghidra</span>
+                <span class="course-tag">Binary Analysis</span>
+                <span class="course-tag">Reverse Engineering</span>
+                <span class="course-tag">GDB</span>
+              </div>
+            </div>
+            <div class="case-footer">
+              <span class="text-muted" style="font-size: 0.75rem;">Ongoing Learning</span>
+              <button class="btn btn-secondary" onclick="document.getElementById('modal-threadweaver').showModal()">Read Case Study</button>
+            </div>
+          </article>
+
+          <!-- Project 6: Active Directory Security Lab -->
+          <article class="case-card">
+            <div>
+              <div class="case-meta">
+                <span>CASE ID: AD-01</span>
+                <span class="badge badge-hands-on">LAB ENVIRONMENT</span>
+              </div>
+              <h3 class="case-title">Active Directory Security Lab</h3>
+              <div class="case-category">Windows / Active Directory / Enterprise Security</div>
+              <div class="case-techniques">
+                <span class="course-tag">Windows Server</span>
+                <span class="course-tag">Domain Controller</span>
+                <span class="course-tag">SMB Enumeration</span>
+                <span class="course-tag">Access Controls</span>
+              </div>
+            </div>
+            <div class="case-footer">
+              <span class="text-muted" style="font-size: 0.75rem;">Enterprise Lab</span>
+              <button class="btn btn-secondary" onclick="document.getElementById('modal-adlab').showModal()">Read Case Study</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       8. CYBER RANGE (CTF & COMPETITION)
+       ========================================================================== -->
+    <section id="cyber-range">
+      <div class="container">
+        <div class="section-header">
+          <span class="tech-label">COMPETITION RECORD</span>
+          <h2 class="section-title">Cyber Range Experience</h2>
+        </div>
+
+        <div class="cyber-range-grid">
+          <!-- NUST CTF -->
+          <div class="ctf-card featured">
+            <div class="ctf-header">
+              <div>
+                <h3 class="ctf-title">NUST DigiInn Cyber Range CTF</h3>
+                <span class="text-muted" style="font-size: 0.8rem; font-family: var(--font-mono);">National Competition</span>
+              </div>
+              <span class="badge badge-hands-on">FINAL ROUND QUALIFIER</span>
+            </div>
+            <p class="ctf-desc">
+              Qualified for the final round of the NUST DigiInn Cyber Range CTF, demonstrating hands-on engagement with real-world security challenges in a competitive cyber-range environment.
+            </p>
+          </div>
+
+          <!-- Black Hat MEA -->
+          <div class="ctf-card">
+            <div class="ctf-header">
+              <div>
+                <h3 class="ctf-title">Black Hat MEA CTF</h3>
+                <span class="text-muted" style="font-size: 0.8rem; font-family: var(--font-mono);">Global Qualification Round</span>
+              </div>
+              <span class="badge badge-foundational">COMPETITION EXPERIENCE</span>
+            </div>
+            <p class="ctf-desc">
+              Participated in the Black Hat MEA cybersecurity qualification environment. Attempted challenging qualification tracks, using the experience to benchmark current skills against international standards and identify key learning areas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       9. EVIDENCE LOCKER & BEYOND TERMINAL
+       ========================================================================== -->
+    <section id="evidence">
+      <div class="container">
+        <div class="two-col-grid">
+          <!-- Evidence Locker -->
+          <div>
+            <div class="section-header" style="margin-bottom: 1.5rem;">
+              <span class="tech-label">CREDENTIALS</span>
+              <h2 class="section-title">Evidence Locker</h2>
+            </div>
+
+            <div class="cert-card">
+              <div>
+                <h4 class="text-bright">Foundations of Cybersecurity</h4>
+                <div class="text-muted" style="font-size: 0.85rem; font-family: var(--font-mono);">Google / Coursera</div>
+                <p style="font-size: 0.85rem; margin-top: 0.4rem;">Core cybersecurity concepts, threat landscapes, security practices, and risk mitigation basics.</p>
+              </div>
+              <span class="badge badge-foundational">FOUNDATION</span>
+            </div>
+
+            <div class="cert-card">
+              <div>
+                <h4 class="text-bright">Graphic Designing</h4>
+                <div class="text-muted" style="font-size: 0.85rem; font-family: var(--font-mono);">NS Training Institute</div>
+                <p style="font-size: 0.85rem; margin-top: 0.4rem;">Visual communications, composition, UI design principles, and technical media crafting.</p>
+              </div>
+              <span class="badge badge-hands-on">CREATIVE</span>
+            </div>
+          </div>
+
+          <!-- Beyond The Terminal -->
+          <div>
+            <div class="section-header" style="margin-bottom: 1.5rem;">
+              <span class="tech-label">COMMUNICATION & LEADERSHIP</span>
+              <h2 class="section-title">Beyond The Terminal</h2>
+            </div>
+
+            <div class="operator-card" style="margin-bottom: 1rem;">
+              <h4 class="text-red font-mono" style="margin-bottom: 0.5rem;">Visual Communication in Security</h4>
+              <p class="operator-text" style="font-size: 0.9rem;">
+                Security professionals don't only investigate systems — they also communicate findings. My background in graphic design helps me present technical assessment reports, threat vectors, and architectural diagrams with clarity and professional rigor.
+              </p>
+            </div>
+
+            <div class="operator-card">
+              <div class="ctf-header">
+                <div>
+                  <h4 class="text-bright">Pakistan Youth Parliament</h4>
+                  <div class="text-muted" style="font-size: 0.85rem; font-family: var(--font-mono);">Provincial Member</div>
+                </div>
+                <span class="badge badge-foundational">CIVIC LEADERSHIP</span>
+              </div>
+              <p class="operator-text" style="font-size: 0.9rem;">
+                Engaged in public speaking, civic dialogue, teamwork, and leadership development.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       10. LEARNING ROADMAP
+       ========================================================================== -->
+    <section id="roadmap">
+      <div class="container">
+        <div class="section-header">
+          <span class="tech-label">PROGRESSION TRACK</span>
+          <h2 class="section-title">From Student → Security Professional</h2>
+        </div>
+
+        <div class="roadmap-timeline">
+          <div class="roadmap-step">
+            <span class="step-number">PHASE 01</span>
+            <h3 class="step-title">FOUNDATION</h3>
+            <div class="step-items">
+              <span>✓ Software Engineering</span>
+              <span>✓ Linux Operating Systems</span>
+              <span>✓ Computer Networks</span>
+              <span>✓ Security Fundamentals</span>
+            </div>
+          </div>
+
+          <div class="roadmap-step active">
+            <span class="step-number">PHASE 02</span>
+            <h3 class="step-title">OFFENSIVE FOCUS</h3>
+            <div class="step-items">
+              <span class="text-red">➔ Recon & Enumeration</span>
+              <span class="text-red">➔ Web Security & Burp Suite</span>
+              <span class="text-red">➔ Nmap & Network Scans</span>
+              <span class="text-red">➔ Privilege Escalation</span>
+            </div>
+          </div>
+
+          <div class="roadmap-step">
+            <span class="step-number">PHASE 03</span>
+            <h3 class="step-title">ENTERPRISE</h3>
+            <div class="step-items">
+              <span>• Windows Server & AD Labs</span>
+              <span>• Network Architecture</span>
+              <span>• Security Controls Verification</span>
+            </div>
+          </div>
+
+          <div class="roadmap-step">
+            <span class="step-number">PHASE 04</span>
+            <h3 class="step-title">ADVANCED</h3>
+            <div class="step-items">
+              <span>• Binary Reverse Engineering</span>
+              <span>• Advanced Web Exploitation</span>
+              <span>• Red Team Operations</span>
+            </div>
+          </div>
+
+          <div class="roadmap-step">
+            <span class="step-number">PHASE 05</span>
+            <h3 class="step-title">PROFESSIONAL</h3>
+            <div class="step-items">
+              <span>• Penetration Testing</span>
+              <span>• Professional Reporting</span>
+              <span>• Client Security Assessments</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       11. HOW I THINK (ATTACKER'S MINDSET)
+       ========================================================================== -->
+    <section id="mindset">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="tech-label">METHODOLOGY</span>
+          <h2 class="section-title">Attacker's Mindset. Defender's Responsibility.</h2>
+        </div>
+
+        <div class="mindset-grid">
+          <div class="mindset-card">
+            <div class="mindset-num">01</div>
+            <h3 class="mindset-title">RECON</h3>
+            <p class="mindset-desc">Understand the attack surface thoroughly before touching anything.</p>
+          </div>
+
+          <div class="mindset-card">
+            <div class="mindset-num">02</div>
+            <h3 class="mindset-title">ENUMERATE</h3>
+            <p class="mindset-desc">Identify open services, misconfigurations, and potential vectors.</p>
+          </div>
+
+          <div class="mindset-card">
+            <div class="mindset-num">03</div>
+            <h3 class="mindset-title">VALIDATE</h3>
+            <p class="mindset-desc">Verify whether suspected vulnerabilities are genuinely exploitable.</p>
+          </div>
+
+          <div class="mindset-card">
+            <div class="mindset-num">04</div>
+            <h3 class="mindset-title">EXPLOIT</h3>
+            <p class="mindset-desc">Demonstrate impact safely within strictly authorized lab boundaries.</p>
+          </div>
+
+          <div class="mindset-card">
+            <div class="mindset-num">05</div>
+            <h3 class="mindset-title">DOCUMENT</h3>
+            <p class="mindset-desc">Capture exact reproduction commands and technical evidence.</p>
+          </div>
+
+          <div class="mindset-card">
+            <div class="mindset-num">06</div>
+            <h3 class="mindset-title">REMEDIATE</h3>
+            <p class="mindset-desc">Formulate actionable defensive recommendations to eliminate risk.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       12. CONTACT SECTION
+       ========================================================================== -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <div class="section-header">
+              <span class="tech-label">ESTABLISH CONNECTION</span>
+              <h2 class="section-title">Start a Conversation</h2>
+            </div>
+            <p class="operator-text">
+              I am always interested in connecting with cybersecurity professionals, penetration testers, security engineers, recruiters, and university researchers.
+            </p>
+
+            <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;" class="font-mono">
+              <div><span class="text-muted">OPEN TO:</span> <span class="text-bright">Cybersecurity Internships</span></div>
+              <div><span class="text-muted">FOCUS:</span> <span class="text-red">Penetration Testing / Red Team</span></div>
+              <div><span class="text-muted">LOCATION:</span> <span class="text-bright">Pakistan</span></div>
+            </div>
+
+            <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+              <a href="https://linkedin.com" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn Profile</a>
+              <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-secondary">GitHub Profile</a>
+            </div>
+          </div>
+
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent placeholder.');">
+            <div class="form-group">
+              <label class="form-label" for="name">NAME</label>
+              <input type="text" id="name" class="form-input" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">EMAIL</label>
+              <input type="email" id="email" class="form-input" placeholder="your.email@domain.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">MESSAGE</label>
+              <textarea id="message" class="form-textarea" placeholder="Type your message here..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">SEND MESSAGE</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+     13. FOOTER
+     ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="brand-statement">"Break systems in the lab. Understand why they broke. Build better defenses."</p>
+      <p class="text-bright" style="font-weight: 600;">Abdul Ahad</p>
+      <p class="text-muted" style="font-size: 0.85rem;">Software Engineering Undergraduate — Air University Islamabad</p>
+      <p class="text-dark" style="font-size: 0.75rem; margin-top: 1rem; font-family: var(--font-mono);">
+        Authorized Lab Documentation & Personal Portfolio // Updated 2026
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+     14. CASE STUDY MODAL DIALOGS
+     ========================================================================== -->
+
+  <!-- Modal 1: CAP -->
+  <dialog id="modal-cap">
+    <div class="modal-header">
+      <div>
+        <span class="tech-label">CASE FILE // HTB-01</span>
+        <h3 class="text-bright" style="margin-top: 0.4rem;">HTB — CAP Investigation</h3>
+      </div>
+      <button class="btn-close" onclick="document.getElementById('modal-cap').close()">×</button>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">01 — Objective</div>
+      <p>Analyze and obtain authorized access on the target machine in a controlled lab environment by assessing web parameters and system privilege configurations.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">02 — Reconnaissance & Enumeration</div>
+      <p>Performed service scans using Nmap. Discovered HTTP server on port 80 and open FTP/SSH services. Enumerated web routing and identified PCAP download endpoints containing unencrypted traffic analysis capabilities.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">03 — Attack Path & Analysis</div>
+      <p>1. Parameter manipulation (IDOR) on network capture endpoints allowed downloading capture logs of other sessions.<br>2. Inspected captured PCAP traffic in Wireshark to locate cleartext authentication credentials.<br>3. Authenticated via SSH using credentials.<br>4. Analyzed Linux capabilities (`getcap -r / 2>/dev/null`) to locate `setuid` binary permissions allowing privilege escalation.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">04 — Technical Evidence</div>
+      <div class="code-block">$ getcap -r / 2>/dev/null<br>/usr/bin/python3.8 = cap_setuid+ep</div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">05 — Defensive Perspective & Remediation</div>
+      <p>• Implement proper access control checks to verify that requesting users own session PCAP logs (prevent IDOR).<br>• Enforce strict privilege separation and avoid granting unnecessary Linux capabilities like `cap_setuid` to scripting interpreters.</p>
+    </div>
+  </dialog>
+
+  <!-- Modal 2: BRUTUS -->
+  <dialog id="modal-brutus">
+    <div class="modal-header">
+      <div>
+        <span class="tech-label">CASE FILE // FRN-01</span>
+        <h3 class="text-bright" style="margin-top: 0.4rem;">Sherlock — Brutus Log Analysis</h3>
+      </div>
+      <button class="btn-close" onclick="document.getElementById('modal-brutus').close()">×</button>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">01 — Objective</div>
+      <p>Analyze compromised Linux system logs to reconstruct an attacker's authentication timeline and identify brute-force login attempts.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">02 — Investigation Methodology</div>
+      <p>Inspected `/var/log/auth.log` and binary session records (`wtmp`). Filtered failed vs successful SSH login events to establish precise timestamps and source IP addresses.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">03 — Key Finding</div>
+      <p>Identified high-frequency failed SSH authentication events originating from a single host, followed immediately by a successful authentication indicating a successful credential brute-force attack.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">04 — Defensive Mitigation</div>
+      <p>Enforce SSH public-key authentication, disable password authentication, and deploy Fail2ban or automated rate-limiting controls.</p>
+    </div>
+  </dialog>
+
+  <!-- Modal 3: HWAT'SHELL -->
+  <dialog id="modal-hwatshell">
+    <div class="modal-header">
+      <div>
+        <span class="tech-label">CASE FILE // WEB-02</span>
+        <h3 class="text-bright" style="margin-top: 0.4rem;">Hwat'sHell Web Shell Analysis</h3>
+      </div>
+      <button class="btn-close" onclick="document.getElementById('modal-hwatshell').close()">×</button>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">01 — Objective</div>
+      <p>Investigate web application command handling to understand webshell persistence and execution flow inside a sandboxed Linux environment.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">02 — Technical Methodology</div>
+      <p>Enumerated HTTP POST parameter handling. Identified unvalidated input passed directly to execution functions. Executed controlled reverse shell connections back to local listener.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">03 — Defensive Recommendation</div>
+      <p>Avoid executing system commands directly from web parameters. Enforce strict input validation whitelist and run web servers under unprivileged low-impact accounts.</p>
+    </div>
+  </dialog>
+
+  <!-- Modal 4: LOGSLINGER -->
+  <dialog id="modal-logslinger">
+    <div class="modal-header">
+      <div>
+        <span class="tech-label">CASE FILE // WEB-03</span>
+        <h3 class="text-bright" style="margin-top: 0.4rem;">Logslinger — LFI Investigation</h3>
+      </div>
+      <button class="btn-close" onclick="document.getElementById('modal-logslinger').close()">×</button>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">01 — Objective</div>
+      <p>Investigate Local File Inclusion (LFI) in a Dockerized environment and map the container boundaries.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">02 — Attack Path</div>
+      <p>INPUT PARAMETER ➔ FILE INCLUSION (`../../../../etc/passwd`) ➔ CONTAINER FILESYSTEM ➔ INTERACTIVE SHELL</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">03 — Defensive Perspective</div>
+      <p>Use static file identifier maps or strict basename sanitization rather than raw path parameters in file inclusion functions.</p>
+    </div>
+  </dialog>
+
+  <!-- Modal 5: THREADWEAVER -->
+  <dialog id="modal-threadweaver">
+    <div class="modal-header">
+      <div>
+        <span class="tech-label">CASE FILE // PWN-01</span>
+        <h3 class="text-bright" style="margin-top: 0.4rem;">ThreadWeaver Binary Analysis</h3>
+      </div>
+      <button class="btn-close" onclick="document.getElementById('modal-threadweaver').close()">×</button>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">01 — Objective</div>
+      <p>Reverse engineer targeted Linux ELF binaries in Ghidra to understand memory handling and function call flows.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">02 — Status</div>
+      <p>Ongoing research and practice project focused on decompilation, stack inspection, and debugging concepts.</p>
+    </div>
+  </dialog>
+
+  <!-- Modal 6: AD LAB -->
+  <dialog id="modal-adlab">
+    <div class="modal-header">
+      <div>
+        <span class="tech-label">CASE FILE // AD-01</span>
+        <h3 class="text-bright" style="margin-top: 0.4rem;">Active Directory Security Lab</h3>
+      </div>
+      <button class="btn-close" onclick="document.getElementById('modal-adlab').close()">×</button>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">01 — Overview</div>
+      <p>Controlled Windows Server lab setup designed to practice domain architecture, enumeration, SMB inspection, and user permission auditing.</p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">02 — Network Flow Diagram</div>
+      <div class="code-block">DOMAIN CONTROLLER ➔ DOMAIN USERS ➔ WORKSTATIONS ➔ SMB/RPC SERVICES</div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">03 — Dual Perspective</div>
+      <p>• <strong>Offensive:</strong> Enumerating anonymous shares, user rights, and unconstrained delegation.<br>• <strong>Defensive:</strong> Hardening GPOs, applying least-privilege principles, and disabling legacy protocols.</p>
+    </div>
+  </dialog>
+
+  <script>
+    // Navigation menu toggle for mobile
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
