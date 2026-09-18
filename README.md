@@ -23,6 +23,7 @@ Typography: Inter & JetBrains Mono (Google Fonts)
 
 
 📂 Repository Structure
+
 .
 ├── index.html        # Main HTML source containing structure, styling, and script
 └── README.md         # Repository documentation
