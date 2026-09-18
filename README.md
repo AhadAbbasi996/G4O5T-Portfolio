@@ -55,4 +55,4 @@ I am actively open to discussing cybersecurity internships, penetration testing 
 LinkedIn: www.linkedin.com/in/abdul-ahad-abbasi
 GitHub: AhadAbbasi996
 
-                                                            “Break systems in the lab. Understand why they broke. Build better defenses.”
+           ----- “Break systems in the lab. Understand why they broke. Build better defenses.” -----
